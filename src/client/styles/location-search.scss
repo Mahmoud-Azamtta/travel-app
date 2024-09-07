@@ -1,0 +1,102 @@
+@import "./colors.scss";
+
+#location-wrapper {
+  margin-bottom: 0.8em;
+  display: flex;
+  justify-content: around;
+  gap: 1.5rem;
+
+  h3 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    background: white;
+    border-radius: 5px;
+    padding-left: 5px;
+    margin-bottom: 5px;
+  }
+
+  .date {
+    margin-bottom: 1rem;
+  }
+
+  &>div {
+    width: 50%;
+
+    &#location-image img {
+      width: 100%;
+      box-shadow: 0px 0px 16px #295F9866;
+      border-radius: 8px
+    }
+  }
+
+  #forecast {
+    h4 {
+      font-size: 1.2rem;
+      font-weight: bold;
+      background: white;
+      border-radius: 5px;
+      padding-left: 5px;
+      margin-bottom: 5px;
+    }
+
+    .weather {
+      display: flex;
+      flex-direction: column;
+
+      .weather-icon {
+        width: 100px;
+        margin: auto;
+      }
+
+      p {
+        font-size: 0.85rem;
+        font-style: italic;
+      }
+    }
+
+    .temp {
+      margin: 1rem 0 0.5rem 0;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid $ta-dark;
+    }
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: space-around;
+
+    button {
+      padding: 0.4rem 0.75rem;
+      font-size: 1rem;
+      color: white;
+      border-radius: 8px;
+      transition: background-color 0.15s;
+    }
+
+    #save {
+      background-color: $ta-success;
+      border: solid 1px $ta-success-dark;
+
+      &:hover {
+        background-color: $ta-success-light;
+      }
+
+      &:active {
+        background-color: $ta-success-dark;
+      }
+    }
+
+    #discard {
+      background-color: $ta-danger;
+      border: solid 1px $ta-danger-dark;
+
+      &:hover {
+        background-color: $ta-danger-medium;
+      }
+
+      &:active {
+        background-color: $ta-danger-dark;
+      }
+    }
+  }
+}

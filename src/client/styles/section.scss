@@ -1,0 +1,26 @@
+@import "./colors.scss";
+@import "./animation.scss";
+
+section {
+  margin-bottom: 1em;
+  border-radius: 8px;
+  background-color: $ta-light;
+  box-shadow: 0px 0px 32px #d9e9fa55;
+  padding: 2.5rem;
+
+  &.loaded {
+    @include fade-in(0.5s, ease, 100px, 0s);
+  }
+
+  h2 {
+    font-size: 1.25em;
+    border-bottom: 1px solid;
+    margin-bottom: 1rem;
+  }
+
+  .empty {
+    color: $ta-medium;
+    text-align: center;
+    font-size: 0.8rem;
+  }
+}

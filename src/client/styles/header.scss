@@ -1,0 +1,36 @@
+@import "./colors.scss";
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 40px;
+  background-color: #295F9845;
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid $ta-medium;
+
+  h1 {
+    font-size: 1.5rem;
+    color: $ta-yellow;
+    font-weight: bold;
+    text-shadow: $ta-yellow 1px 0 10px;
+
+    span {
+      text-shadow: none;
+    }
+  }
+
+  nav {
+    a {
+      color: $ta-font;
+
+      &:hover {
+        color: $ta-yellow-dark;
+      }
+
+      &:active {
+        color: $ta-yellow-light;
+      }
+    }
+  }
+}

@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Travel App</title>
+  </head>
+
+  <body>
+    <header>
+      <h1>Travel App <span>🧳</span></h1>
+      <nav>
+        <a href="https://github.com/Mahmoud-Azamtta" target="_blank">Github</a>
+      </nav>
+    </header>
+
+    <main>
+      <form id="ta-form" onsubmit="return Client.handleSubmit(event)">
+        <label for="name">🗺️ Where will be your next trip?</label>
+        <input
+          id="location"
+          name="location"
+          type="text"
+          placeholder="Location goes here"
+          required
+        />
+
+        <div class="feedback location"></div>
+
+        <label for="leaving-date">🛫 When will you leave?</label>
+        <input id="leaving-date" name="leaving-date" type="date" required />
+
+        <div class="feedback date"></div>
+
+        <div class="feedback failure"></div>
+
+        <button id="submit-button" type="submit">Search 🔎</button>
+
+        <div class="loader">Loading...</div>
+
+        <div class="error-wrapper"></div>
+      </form>
+
+      <section>
+        <h2><strong>Search Result:</strong></h2>
+        <div id="location-wrapper">
+          <p class="empty">Didn't provide a location yet</p>
+        </div>
+        <h2><strong>Your Trips</strong></h2>
+        <div id="trip-list">
+          <!-- <p class="empty">No saved trips yet</p> -->
+          <div class="trip">
+            <div class="image-wrapper">
+              <img
+                src="https://cdn.pixabay.com/photo/2019/07/14/07/29/temple-of-hercules-4336342_150.jpg"
+                alt=""
+              />
+            </div>
+            <div class="location">
+              <h5><strong>Amman - Jordan</strong></h5>
+              <p>2024-09-10</p>
+              <h6><strong>Forecast:</strong></h6>
+              <div class="forecast">
+                <div class="image-wrapper">
+                  <img
+                    class="weather-icon"
+                    src="https://www.weatherbit.io/static/img/icons/t01n.png"
+                    alt=""
+                  />
+                </div>
+                <div class="forecast-desc">
+                  <p>Clear sky</p>
+                  <p>Temp: <strong>30°</strong></p>
+                </div>
+              </div>
+            </div>
+            <button type="button"><strong>&#x2715;</strong></button>
+          </div>
+          <div class="trip">
+            <div class="image-wrapper">
+              <img
+                src="https://cdn.pixabay.com/photo/2019/07/14/07/29/temple-of-hercules-4336342_150.jpg"
+                alt=""
+              />
+            </div>
+            <div class="location">
+              <h5><strong>Amman - Jordan</strong></h5>
+              <p>2024-09-10</p>
+              <h6><strong>Forecast:</strong></h6>
+              <div class="forecast">
+                <div class="image-wrapper">
+                  <img
+                    class="weather-icon"
+                    src="https://www.weatherbit.io/static/img/icons/t01n.png"
+                    alt=""
+                  />
+                </div>
+                <div class="forecast-desc">
+                  <p>Clear sky</p>
+                  <p>Temp: <strong>30°</strong></p>
+                </div>
+              </div>
+            </div>
+            <button type="button"><strong>&#x2715;</strong></button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>© Copyright Mahmoud Azamtta @Udacity-student</p>
+    </footer>
+  </body>
+</html>
