@@ -41,24 +41,22 @@ app.get("/", (_, res) => {
 });
 
 app.post("/api/weather", getCoordinates, async (req, res) => {
-  const { arrivalDate } = req.body;
+  const { tripDate } = req.body;
   const { lat, lon, name, countryName } = req.coords;
 
-  console.log(req.coords);
-
   try {
-    const data = await fetchWeather(lat, lon, arrivalDate);
+    const data = await fetchWeather(lat, lon, tripDate);
     data.cityName = name;
     data.countryName = countryName;
     res.status(200).json(data);
   } catch (error) {
-    console.log(error);
     res.status(500).json({ error: error.message });
   }
 });
 
 app.get("/api/image", async (req, res) => {
-  const { placename } = req.params;
+  const { placename } = req.query;
+
   try {
     const data = await fetchLocationImage(placename);
     res.status(200).json(data);

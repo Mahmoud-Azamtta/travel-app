@@ -11,23 +11,17 @@ const getDaysLeft = (arrivalDate) => {
 };
 
 const fetchWeather = async (lat, lon, tripDate) => {
-  let baseURL = "https://api.weatherbit.io/v2.0";
+  let baseURL = "https://api.weatherbit.io/v2.0/forecast/daily";
   const API_KEY = process.env.WEATHERBIT_KEY;
   const daysLeft = getDaysLeft(tripDate);
 
   const params = {
     key: API_KEY,
     units: "M",
+    days: daysLeft,
     lat,
     lon,
   };
-
-  if (daysLeft <= 7) baseURL += "/current";
-  else {
-    baseURL += "/forecast/daily";
-    params.days = daysLeft + 1;
-  }
-  console.log(lat, lon, tripDate);
 
   try {
     const response = await axios.get(baseURL, { params });
