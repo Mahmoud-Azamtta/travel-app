@@ -42,14 +42,13 @@ const fetchWeather = async (lat, lon, tripDate) => {
 };
 
 const fetchCoordinates = async (placename) => {
-  const encodedLocation = encodeURIComponent(placename);
   const username = process.env.GEONAMES_USERNAME;
   const BASE_URL = `http://api.geonames.org/searchJSON`;
 
   try {
     const response = await axios.get(BASE_URL, {
       params: {
-        q: encodedLocation,
+        q: placename,
         maxRows: 1,
         username,
       },
