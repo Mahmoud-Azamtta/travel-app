@@ -80,13 +80,13 @@ const handleSubmit = async (event) => {
   setFeedbackMessage("", true);
   handleError(false, "");
 
-  const isValid = isValidForm(locationInput.value, dateInput.value);
+  const isValid = isValidForm(locationInput.value.trim(), dateInput.value);
 
   if (!isValid) return;
 
   setLoading(true);
   try {
-    const data = await fetchData(locationInput.value, dateInput.value);
+    const data = await fetchData(locationInput.value.trim(), dateInput.value);
 
     if (!data) {
       handleError(true, "Interal server error");

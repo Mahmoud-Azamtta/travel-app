@@ -1,3 +1,5 @@
+import { renderTripList } from "./tripListHandler";
+
 const wrapper = document.getElementById("location-wrapper");
 const locationInput = document.querySelector("#ta-form #location");
 const dateInput = document.querySelector("#ta-form #leaving-date");
@@ -60,10 +62,11 @@ const saveResult = (data) => {
   savedTrips = savedTrips ? JSON.parse(savedTrips) : [];
   savedTrips.push(data);
   localStorage.setItem("saved_trips", JSON.stringify(savedTrips));
+  console.log(localStorage.getItem("saved_trips"));
 
   resetResult();
   resetForm();
-  console.log(localStorage.getItem("saved_trips"));
+  renderTripList();
 };
 
 export { renderResponse, discardResult, saveResult };
