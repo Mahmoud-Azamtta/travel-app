@@ -38,7 +38,7 @@ const isValidForm = (location, date) => {
   }
 
   if (!isValidDate(date)) {
-    locationFeedback.innerHTML = "<p class='feedback-error'>Invalid date</p>";
+    dateFeedback.innerHTML = "<p class='feedback-error'>Invalid date</p>";
     isValid = false;
   }
 
@@ -66,7 +66,7 @@ const fetchData = async (placename, tripDate) => {
   } catch (error) {
     throw error.status === 404
       ? "Location not found"
-      : "Unknow error occured, try again!";
+      : "Unknown error occured, try again!";
   }
 };
 
@@ -114,4 +114,11 @@ const handleSubmit = async (event) => {
 };
 
 // Export the handleSubmit function
-export { handleSubmit };
+export {
+  handleSubmit,
+  setLoading,
+  setFeedbackMessage,
+  fetchData,
+  handleError,
+  isValidForm,
+};

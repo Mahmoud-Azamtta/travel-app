@@ -35,7 +35,7 @@ const renderTrip = (trip, index, isPast = false) => {
       </div>
       <div class="location">
         <h5><strong>${trip.cityName} - ${trip.countryName}</strong></h5>
-        <p class="trip-date">${trip.date} - ${isPast ? "<span class='past'>Past</span>" : ""}</p>
+        <p class="trip-date">${trip.date} ${isPast ? "- <span class='past'>Past</span>" : ""}</p>
         <h6><strong>Forecast:</strong></h6>
         <div class="forecast">
           <div class="image-wrapper">
