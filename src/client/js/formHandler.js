@@ -1,6 +1,7 @@
 import axios from "axios";
 import { isValidDate } from "./validateDate";
 import { isValidLocation } from "./validateLocationName";
+import { renderResponse, saveResult, discardResult } from "./resultHandler";
 
 const setLoading = (show) => {
   const loader = document.querySelector(".loader");
@@ -15,51 +16,10 @@ const handleError = (show, msg) => {
   error.style.display = show ? "block" : "none";
 };
 
-const renderResponse = (data) => {
-  const result = document.getElementById("location-wrapper");
+const setFeedbackMessage = (message, isSuccess) => {
+  const feedback = document.querySelector("#ta-form .feedback.failure");
 
-  if (!data) {
-    handleError(true, "Interal server error");
-    return;
-  }
-
-  if (data?.error) {
-    handleError(true, data.error);
-    return;
-  }
-
-  result.innerHTML = `
-    <div class="details">
-      <h3>${data.cityName} - ${data.countryName}</h3>
-      <p class="date">Date: ${data.date}</p>
-      <div id="forecast">
-        <h4>Weather Forecast</h4>
-        <div class="weather">
-          <img
-            class="weather-icon"
-            src="https://www.weatherbit.io/static/img/icons/${data.weather.icon}.png"
-            alt=""
-          />
-          <p class="center"><em>${data.weather.description}</em></p>
-        </div>
-        <div class="temp">
-          <p>Temp: <strong>${data.temp}°</strong></p>
-          ${data.max_temp ? `<p><strong>${data.max_temp}°</strong></p>` : ""}
-          ${data.min_temp ? `<p><strong>${data.min_temp}°</strong></p>` : ""}
-        </div>
-      </div>
-      <div class="buttons">
-        <button type="button" id="discard">Discard</button>
-        <button type="button" id="save">Save</button>
-      </div>
-    </div>
-    <div id="location-image">
-      <img
-        src="${data.locationImage}"
-        alt="city picture"
-      />
-    </div>
-  `;
+  feedback.innerHTML = `<p class='${isSuccess ? "feedback-success" : "feedback-error"}'>${message}</p>`;
 };
 
 const isValidForm = (location, date) => {
@@ -85,17 +45,39 @@ const isValidForm = (location, date) => {
   return isValid;
 };
 
+const fetchData = async (placename, tripDate) => {
+  const BASE_URL = "http://localhost:8000/api";
+  console.log(placename, tripDate);
+
+  try {
+    const [weatherResponse, imageResponse] = await Promise.all([
+      axios.post(`${BASE_URL}/weather`, {
+        placename,
+        tripDate,
+      }),
+      axios.get(`${BASE_URL}/image`, {
+        params: {
+          placename,
+        },
+      }),
+    ]);
+
+    return { ...weatherResponse.data, ...imageResponse.data };
+  } catch (error) {
+    throw error.status === 404
+      ? "Location not found"
+      : "Unknow error occured, try again!";
+  }
+};
+
 // Function to send data to the server
 const handleSubmit = async (event) => {
   event.preventDefault();
 
-  const BASE_URL = "http://localhost:8000/api";
-
   const locationInput = document.querySelector("#ta-form #location");
   const dateInput = document.querySelector("#ta-form #leaving-date");
-  const feedback = document.querySelector("#ta-form .feedback.failure");
 
-  feedback.innerHTML = "";
+  setFeedbackMessage("", true);
   handleError(false, "");
 
   const isValid = isValidForm(locationInput.value, dateInput.value);
@@ -104,30 +86,28 @@ const handleSubmit = async (event) => {
 
   setLoading(true);
   try {
-    const weatherResponse = await axios.post(`${BASE_URL}/weather`, {
-      placename: locationInput.value,
-      arrivalDate: dateInput.value,
-    });
-    const imageResponse = await axios.get(`${BASE_URL}/image`, {
-      params: {
-        placename: `${weatherResponse.data.cityName} - ${weatherResponse.data.countryName}`,
-      },
-    });
+    const data = await fetchData(locationInput.value, dateInput.value);
 
-    const data = {
-      ...weatherResponse.data,
-      ...imageResponse.data,
-    };
-    console.log(data);
-    renderResponse(data);
-    feedback.innerHTML =
-      "<p class='feedback-success'>Found the location you searched for!</p>";
-  } catch (error) {
-    if (error.status === 404) {
-      feedback.innerHTML = `<p class='feedback-error'>Location not found</p>`;
-    } else {
-      feedback.innerHTML = `<p class='feedback-error'>Unknow error occured, try again!</p>`;
+    if (!data) {
+      handleError(true, "Interal server error");
+      return;
     }
+
+    if (data?.error) {
+      handleError(true, data.error);
+      return;
+    }
+
+    renderResponse(data);
+    setFeedbackMessage("Found the location you searched for!", true);
+
+    const saveBtn = document.querySelector("button#save");
+    const discardBtn = document.querySelector("button#discard");
+
+    saveBtn.addEventListener("click", () => saveResult(data));
+    discardBtn.addEventListener("click", discardResult);
+  } catch (error) {
+    setFeedbackMessage(error, false);
   } finally {
     setLoading(false);
   }
