@@ -7,6 +7,7 @@ import "./styles/section.scss";
 import "./styles/header.scss";
 import "./styles/location-search.scss";
 import "./styles/trip-list.scss";
+
 // js files
 import { handleSubmit } from "./js/formHandler";
 import { handleAnimation } from "./js/handleAnimation";

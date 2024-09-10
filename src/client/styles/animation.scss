@@ -1,3 +1,5 @@
+@use "sass:math";
+
 @mixin fade-in($duration: 0.5s, $easing: ease, $offset: 100px, $delay: 0) {
   opacity: 0;
   transform: translateY($offset);
@@ -19,4 +21,47 @@
       opacity: 1;
     }
   }
+}
+
+@mixin fly($direction: "left-to-right", $duration-min: 3s, $duration-max: 8s) {
+
+  $screen-width: 100vw;
+
+  $random-duration: $duration-min + math.random(math.div($duration-max - $duration-min, 1s)) * 1s;
+  animation-duration: $random-duration;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+
+  @if $direction =='left-to-right' {
+    animation-name: fly-left-to-right;
+
+    @keyframes fly-left-to-right {
+      0% {
+        transform: translate(-100%, math.random(math.div(100vh, 1vh)) * 1vh); // Updated line
+      }
+
+      100% {
+        transform: translate(100vw, math.random(math.div(100vh, 1vh)) * 1vh); // Updated line
+      }
+    }
+
+  }
+
+  @else if $direction =='right-to-left' {
+
+    animation-name: fly-right-to-left;
+
+    @keyframes fly-right-to-left {
+
+      0% {
+        transform: translate(100vw, math.random(math.div(100vh, 1vh)) * 1vh); // Updated line
+      }
+
+      100% {
+        transform: translate(-100%, math.random(math.div(100vh, 1vh)) * 1vh); // Updated line
+      }
+    }
+
+  }
+
 }
