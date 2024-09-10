@@ -33,12 +33,12 @@ const isValidForm = (location, date) => {
 
   if (!isValidLocation(location)) {
     locationFeedback.innerHTML =
-      "<p class='feedback-error'>Invalid location name</p>";
+      '<p class="feedback-error">Invalid location name</p>';
     isValid = false;
   }
 
   if (!isValidDate(date)) {
-    dateFeedback.innerHTML = "<p class='feedback-error'>Invalid date</p>";
+    dateFeedback.innerHTML = '<p class="feedback-error">Invalid date</p>';
     isValid = false;
   }
 
@@ -47,7 +47,6 @@ const isValidForm = (location, date) => {
 
 const fetchData = async (placename, tripDate) => {
   const BASE_URL = "http://localhost:8000/api";
-  console.log(placename, tripDate);
 
   try {
     const [weatherResponse, imageResponse] = await Promise.all([

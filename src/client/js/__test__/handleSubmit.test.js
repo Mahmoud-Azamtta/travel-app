@@ -2,7 +2,6 @@ import axios from "axios";
 import { handleSubmit } from "../formHandler";
 import { renderResponse, saveResult, discardResult } from "../resultHandler";
 
-// Mock dependencies
 jest.mock("axios");
 jest.mock("../resultHandler.js");
 
@@ -18,7 +17,7 @@ describe("handleSubmit", () => {
       <form id="ta-form">
         <input id="location" value="New York"/>
         <div class="feedback location"></div>
-        <input id="leaving-date" value="2024-09-10"/>
+        <input id="leaving-date" value="2024-09-24"/>
         <div class="feedback date"></div>
         <div class="feedback failure"></div>
         <div class="error-wrapper"></div>
@@ -51,7 +50,7 @@ describe("handleSubmit", () => {
       "http://localhost:8000/api/weather",
       {
         placename: "New York",
-        tripDate: "2024-09-10",
+        tripDate: "2024-09-24",
       },
     );
     expect(axios.get).toHaveBeenCalledWith("http://localhost:8000/api/image", {

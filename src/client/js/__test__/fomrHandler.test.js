@@ -1,5 +1,4 @@
 import {
-  handleSubmit,
   setLoading,
   setFeedbackMessage,
   fetchData,

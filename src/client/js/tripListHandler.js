@@ -16,8 +16,13 @@ const splitTripList = (list) => {
   const futureTrips = [];
 
   list.forEach((trip) => {
-    if (isPastTrip(trip)) pastTrips.push(trip);
-    else futureTrips.push(trip);
+    if (isPastTrip(trip)) {
+      trip.isPast = true;
+      pastTrips.push(trip);
+    } else {
+      trip.isPast = false;
+      futureTrips.push(trip);
+    }
   });
 
   return { pastTrips, futureTrips };
@@ -60,7 +65,7 @@ const renderTripList = () => {
   let tripList = JSON.parse(localStorage.getItem("saved_trips"));
   let renderedTrips = "";
 
-  if (tripList.length === 0) {
+  if (!tripList || tripList.length === 0) {
     renderEmptyWrapper();
     return;
   }
@@ -70,11 +75,10 @@ const renderTripList = () => {
   pastTrips = dateBasedSort(pastTrips);
   futureTrips = dateBasedSort(futureTrips);
 
-  futureTrips.map(
-    (trip, index) => (renderedTrips += renderTrip(trip, index, false)),
-  );
-  pastTrips.map(
-    (trip, index) => (renderedTrips += renderTrip(trip, index, true)),
+  tripList = [...futureTrips, ...pastTrips];
+
+  tripList.map(
+    (trip, index) => (renderedTrips += renderTrip(trip, index, trip.isPast)),
   );
 
   tripsWrapper.innerHTML = renderedTrips;
@@ -91,8 +95,6 @@ const deleteTrip = (idx) => {
 const handleDeleteTrip = () => {
   const tripsWrapper = document.getElementById("trip-list");
   tripsWrapper.addEventListener("click", (event) => {
-    console.log("hello");
-    console.log(event.target);
     if (event.target.classList.contains("rm-btn")) {
       const idx = event.target.dataset.idx;
       deleteTrip(idx);

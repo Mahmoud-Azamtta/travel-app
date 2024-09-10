@@ -62,7 +62,6 @@ const saveResult = (data) => {
   savedTrips = savedTrips ? JSON.parse(savedTrips) : [];
   savedTrips.push(data);
   localStorage.setItem("saved_trips", JSON.stringify(savedTrips));
-  console.log(localStorage.getItem("saved_trips"));
 
   resetResult();
   resetForm();
