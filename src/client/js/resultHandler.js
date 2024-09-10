@@ -1,10 +1,5 @@
 import { renderTripList } from "./tripListHandler";
 
-const wrapper = document.getElementById("location-wrapper");
-const locationInput = document.querySelector("#ta-form #location");
-const dateInput = document.querySelector("#ta-form #leaving-date");
-const feedback = document.querySelector("#ta-form .feedback.failure");
-
 const renderResponse = (data) => {
   const result = document.getElementById("location-wrapper");
 
@@ -24,8 +19,8 @@ const renderResponse = (data) => {
         </div>
         <div class="temp">
           <p>Temp: <strong>${data.temp}°</strong></p>
-          ${data.max_temp ? `<p>Max Temp: <strong>${data.max_temp}°</strong></p>` : ""}
-          ${data.min_temp ? `<p>Min Temp: <strong>${data.min_temp}°</strong></p>` : ""}
+          <p>Max Temp: <strong>${data.max_temp}°</strong></p>
+          <p>Min Temp: <strong>${data.min_temp}°</strong></p>
         </div>
       </div>
       <div class="buttons">
@@ -43,12 +38,17 @@ const renderResponse = (data) => {
 };
 
 const resetForm = () => {
+  const locationInput = document.querySelector("#ta-form #location");
+  const dateInput = document.querySelector("#ta-form #leaving-date");
+  const feedback = document.querySelector("#ta-form .feedback.failure");
+
   locationInput.value = null;
   dateInput.value = null;
   feedback.innerHTML = "";
 };
 
 const resetResult = () => {
+  const wrapper = document.getElementById("location-wrapper");
   wrapper.innerHTML = '<p class="empty">Didn\'t provide a location yet</p>';
 };
 

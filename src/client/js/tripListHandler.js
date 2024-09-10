@@ -1,6 +1,5 @@
-const tripsWrapper = document.getElementById("trip-list");
-
 const renderEmptyWrapper = () => {
+  const tripsWrapper = document.getElementById("trip-list");
   tripsWrapper.innerHTML = "<p class='empty'>No saved trips yet</p>";
 };
 
@@ -51,12 +50,13 @@ const renderTrip = (trip, index, isPast = false) => {
           </div>
         </div>
       </div>
-      <button data-idx=${index} class="rm-btn" type="button">&#x2715;</button>
+      <button data-idx=${index} id="rm-btn-${index}" class="rm-btn" type="button">&#x2715;</button>
     </div>
   `;
 };
 
 const renderTripList = () => {
+  const tripsWrapper = document.getElementById("trip-list");
   let tripList = JSON.parse(localStorage.getItem("saved_trips"));
   let renderedTrips = "";
 
@@ -89,6 +89,7 @@ const deleteTrip = (idx) => {
 };
 
 const handleDeleteTrip = () => {
+  const tripsWrapper = document.getElementById("trip-list");
   tripsWrapper.addEventListener("click", (event) => {
     console.log("hello");
     console.log(event.target);

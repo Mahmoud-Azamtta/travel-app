@@ -35,7 +35,7 @@ describe("handleSubmit", () => {
     jest.clearAllMocks();
   });
 
-  it("should submit form, fetch data, and render response successfully", async () => {
+  test("should submit form, fetch data, and render response successfully", async () => {
     const mockWeatherResponse = { data: { weather: "sunny", temp: 25 } };
     const mockImageResponse = {
       data: { imageUrl: "http://example.com/image.jpg" },
@@ -64,7 +64,7 @@ describe("handleSubmit", () => {
     });
   });
 
-  it("should show error feedback if location is invalid", async () => {
+  test("should show error feedback if location is invalid", async () => {
     document.querySelector("#location").value = "city123";
 
     await handleSubmit(event);
@@ -76,7 +76,7 @@ describe("handleSubmit", () => {
     );
   });
 
-  it("should display error message on API failure", async () => {
+  test("should display error message on API failure", async () => {
     axios.post.mockRejectedValue({ status: 404 });
 
     await handleSubmit(event);
@@ -86,7 +86,7 @@ describe("handleSubmit", () => {
     );
   });
 
-  it("should add event listeners to save and discard buttons", async () => {
+  test("should add event listeners to save and discard buttons", async () => {
     const mockWeatherResponse = { data: { weather: "sunny", temp: 25 } };
     const mockImageResponse = {
       data: { imageUrl: "http://example.com/image.jpg" },
