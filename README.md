@@ -1,6 +1,6 @@
 # ✈️ Travel App
 
-this project is a web application that fetches and displays weather data, location information, and relevant image for a location provided by the user. it utilizes [weatherbit](https://www.weatherbit.io/api) for weather data, [geonames](https://www.geonames.org/export/web-services.html) for geographical information, and [pixabay](https://pixabay.com/service/about/api/) to retrieve the location image. it also allows the user to save or discard search results, and manage the saved tirps list. the project is bundled with webpack, styled with SCSS, and tested using Jest.
+This project is a web application that fetches and displays weather data, location information, and relevant image for a location provided by the user. it utilizes [Weatherbit](https://www.weatherbit.io/api) for weather data, [Geonames](https://www.geonames.org/export/web-services.html) for geographical information, and [Pixabay](https://pixabay.com/service/about/api/) to retrieve the location image. it also allows the user to save or discard search results, and manage the saved tirps list. the project is bundled with webpack, styled with SCSS, and tested using Jest.
 
 ## ⚙️ Technologies
 
