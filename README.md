@@ -1,6 +1,6 @@
 # ✈️ Travel App
 
-This project is a web application that fetches and displays weather data, location information, and relevant image for a location provided by the user. it utilizes [Weatherbit](https://www.weatherbit.io/api) for weather data, [Geonames](https://www.geonames.org/export/web-services.html) for geographical information, and [Pixabay](https://pixabay.com/service/about/api/) to retrieve the location image. it also allows the user to save or discard search results, and manage the saved tirps list. the project is bundled with webpack, styled with SCSS, and tested using Jest.
+This project is a web application that fetches and displays weather data, location information, and relevant image for a location provided by the user. It utilizes [Weatherbit](https://www.weatherbit.io/api) for weather data, [Geonames](https://www.geonames.org/export/web-services.html) for geographical information, and [Pixabay](https://pixabay.com/service/about/api/) to retrieve the location image. Tt also allows the user to save or discard search results, and manage the saved tirps list. The project is bundled with webpack, styled with SCSS, and tested using Jest.
 
 ## ⚙️ Technologies
 
@@ -31,7 +31,7 @@ GEONAMES_USERNAME=your_geonames_username
      ```sh
      npm run build-dev
      ```
-     Now the development environment is running on port 3000
+     Now the development environment is running on port 3000.
 - Finally to start the production mode
   1. Build the `dist` folder:
      ```sh
@@ -42,7 +42,7 @@ GEONAMES_USERNAME=your_geonames_username
      ```sh
      npm run start
      ```
-     Server will be running on port 8000
+     Server will be running on port 8000.
 
 ### Run the tests
 
