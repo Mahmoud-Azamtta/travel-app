@@ -7,6 +7,10 @@
 
   @media (min-width: 800px) {
     grid-template-columns: repeat(2, 1fr);
+
+    &>p {
+      grid-column: 1 / -1;
+    }
   }
 
   .trip {
