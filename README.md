@@ -12,9 +12,9 @@ This project is a web application that fetches and displays weather data, locati
 
 ### Before starting the project:
 
-[!NOTE]
-This project is developed using Node.js version <em>20.1.0</em>, make sure you are using the correct version.
-You can use `nvm` (Node Version Manager), to make it easier to transition between node versions.
+> [!NOTE]
+> This project is developed using Node.js version <em>20.1.0</em>, make sure you are using the correct version.
+> You can use `nvm` (Node Version Manager), to make it easier to transition between node versions.
 
 First run the command `npm install` to install project dependencies. Then you need to get your API keys for Pixabay and Weatherbit APIs, and get your Geonames username. Finally, you need to create a file called `.env` at project's root to store API credentials. The file should look like the following:
 
