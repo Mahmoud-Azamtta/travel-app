@@ -7,7 +7,7 @@ document.body.innerHTML = `
 const mockTrip = {
   cityName: "New York",
   countryName: "USA",
-  date: "2024-09-24",
+  date: "2024-10-24",
   weather: {
     icon: "r01d",
     description: "Light rain",
@@ -60,7 +60,7 @@ describe("renderTripList function", () => {
   });
 
   test("should sort trips by date", () => {
-    const earlierTrip = { ...mockTrip, date: "2024-09-15" };
+    const earlierTrip = { ...mockTrip, date: "2024-10-15" };
     setLocalStorageTrips([mockTrip, earlierTrip]);
 
     renderTripList();
@@ -68,8 +68,10 @@ describe("renderTripList function", () => {
     const tripsWrapper = document.getElementById("trip-list");
     const renderedTrips = tripsWrapper.innerHTML;
 
-    const firstTrip = renderedTrips.indexOf("2024-09-15");
-    const secondTrip = renderedTrips.indexOf("2024-09-24");
+    const firstTrip = renderedTrips.indexOf("2024-10-15");
+    const secondTrip = renderedTrips.indexOf("2024-10-24");
+
+    console.log(firstTrip, secondTrip);
 
     expect(firstTrip).toBeLessThan(secondTrip);
   });

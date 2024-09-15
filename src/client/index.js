@@ -10,11 +10,8 @@ import "./styles/trip-list.scss";
 
 // js files
 import { handleSubmit } from "./js/formHandler";
-import { handleAnimation } from "./js/handleAnimation";
-import { renderTripList, handleDeleteTrip } from "./js/tripListHandler";
+import { main } from "./js/app";
 
-renderTripList();
-handleAnimation();
-handleDeleteTrip();
+main();
 
 export { handleSubmit };

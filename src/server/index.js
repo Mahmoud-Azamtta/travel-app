@@ -65,6 +65,11 @@ app.get("/api/image", async (req, res) => {
   }
 });
 
+module.exports = {
+  app,
+  getCoordinates,
+};
+
 // Designates what port the app will listen to for incoming requests
 app.listen(8000, () => {
   console.log("listening on port 8000!");
